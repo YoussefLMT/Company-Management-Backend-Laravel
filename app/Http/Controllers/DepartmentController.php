@@ -108,8 +108,31 @@ class DepartmentController extends Controller
                 ]);
 
             }
+        }
+    }
 
-            
+
+
+    public function deleteDepartment($id)
+    {
+        $department = Department::find($id);
+
+        if($department){
+
+            $department->delete();
+    
+            return response()->json([
+                'status' => 200,
+                'message' => 'Deleted successfully',
+            ]);
+
+        }else{
+
+            return response()->json([
+                'status' => 404,
+                'message' => 'Department not found!',
+            ]);
+
         }
     }
 
