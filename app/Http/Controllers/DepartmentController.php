@@ -71,4 +71,47 @@ class DepartmentController extends Controller
     }
 
 
+
+    public function updateDepartment(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'name'=> 'required',
+        ]);
+
+
+        if($validator->fails()){
+
+            return response()->json([
+                'status' => 422,
+                'validation_err' => $validator->messages(),
+            ]);
+
+        }else{
+
+            $department = Department::find($id);
+
+            if($department){
+
+                $department->name = $request->name;
+                $department->save();
+        
+                return response()->json([
+                    'status' => 200,
+                    'message' => 'Updated successully',
+                ]);
+
+            }else{
+
+                return response()->json([
+                    'status' => 404,
+                    'message' => 'Department not found!',
+                ]);
+
+            }
+
+            
+        }
+    }
+
+
 }
