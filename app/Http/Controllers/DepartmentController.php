@@ -21,6 +21,7 @@ class DepartmentController extends Controller
     }
 
 
+
     public function AddDepartment(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -35,7 +36,7 @@ class DepartmentController extends Controller
 
         }else{
 
-            $department = Department::create([
+            Department::create([
                 'name'=> $request->name,
             ]);
     
@@ -43,6 +44,29 @@ class DepartmentController extends Controller
                 'status' => 200,
                 'message' => 'Department added successfully',
             ]);
+        }
+    }
+
+
+
+    public function getDepartment($id)
+    {
+        $department = Department::find($id);
+
+        if($department){
+
+            return response()->json([
+                'status' => 200,
+                'department' => $department,
+            ]);
+
+        }else{
+
+            return response()->json([
+                'status' => 404,
+                'message' => 'Department not found!',
+            ]);
+
         }
     }
 
