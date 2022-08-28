@@ -9,6 +9,19 @@ use Illuminate\Support\Facades\Validator;
 
 class CustomerController extends Controller
 {
+
+    public function getCustomers()
+    {
+
+        $customers = Customer::all();
+
+        return response()->json([
+            'status' => 200,
+            'customers' => $customers,
+        ]);
+    }
+
+
     
     public function addCustomer(Request $request)
     {
