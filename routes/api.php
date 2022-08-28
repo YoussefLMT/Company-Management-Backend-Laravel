@@ -21,7 +21,14 @@ use App\Http\Controllers\DepartmentController;
 
 Route::post('login', [AuthController::class, 'login']);
 
-Route::post('logout', [AuthController::class, 'logOut']);
+
+
+Route::middleware(['auth:sanctum'])->group(function () {
+
+    Route::post('logout', [AuthController::class, 'logOut']);
+
+
+});
 
 
 Route::get('departments', [DepartmentController::class, 'getDepartments']);
