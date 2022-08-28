@@ -38,6 +38,8 @@ Route::get('get-department/{id}', [DepartmentController::class, 'getDepartment']
 Route::put('update-department/{id}', [DepartmentController::class, 'updateDepartment']);
 Route::delete('delete-department/{id}', [DepartmentController::class, 'deleteDepartment']);
 
+
+Route::get('customers', [DepartmentController::class, 'getCustomers']);
 Route::post('add-customer', [CustomerController::class, 'addCustomer']);
 
 
