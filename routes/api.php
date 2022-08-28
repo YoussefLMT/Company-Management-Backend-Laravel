@@ -42,6 +42,7 @@ Route::delete('delete-department/{id}', [DepartmentController::class, 'deleteDep
 Route::get('customers', [CustomerController::class, 'getCustomers']);
 Route::post('add-customer', [CustomerController::class, 'addCustomer']);
 Route::get('get-customer/{id}', [CustomerController::class, 'getCustomer']);
+Route::put('update-customer/{id}', [CustomerController::class, 'updateCustomer']);
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
