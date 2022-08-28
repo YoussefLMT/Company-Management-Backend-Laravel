@@ -21,6 +21,8 @@ use App\Http\Controllers\DepartmentController;
 
 Route::post('login', [AuthController::class, 'login']);
 
+Route::post('logout', [AuthController::class, 'logOut']);
+
 
 Route::get('departments', [DepartmentController::class, 'getDepartments']);
 Route::post('add-department', [DepartmentController::class, 'addDepartment']);
