@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,7 @@ Route::get('get-department/{id}', [DepartmentController::class, 'getDepartment']
 Route::put('update-department/{id}', [DepartmentController::class, 'updateDepartment']);
 Route::delete('delete-department/{id}', [DepartmentController::class, 'deleteDepartment']);
 
+Route::post('add-customer', [CustomerController::class, 'addCustomer']);
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
