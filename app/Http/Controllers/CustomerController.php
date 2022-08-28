@@ -55,4 +55,27 @@ class CustomerController extends Controller
             ]);
         }
     }
+
+
+
+    public function getCustomer($id)
+    {
+        $customer = Customer::find($id);
+
+        if($customer){
+
+            return response()->json([
+                'status' => 200,
+                'customer' => $customer,
+            ]);
+
+        }else{
+
+            return response()->json([
+                'status' => 404,
+                'message' => 'Customer not found!',
+            ]);
+
+        }
+    }
 }
