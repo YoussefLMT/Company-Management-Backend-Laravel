@@ -78,4 +78,53 @@ class CustomerController extends Controller
 
         }
     }
+
+
+
+    public function updateCustomer(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'first_name'=> 'required',
+            'last_name'=> 'required',
+            'email' => 'required|email|unique:customers,email',
+            'phone' => 'required',
+            'address' => 'required',
+        ]);
+
+
+        if($validator->fails()){
+
+            return response()->json([
+                'status' => 422,
+                'validation_err' => $validator->messages(),
+            ]);
+
+        }else{
+
+            $customer = Customer::find($id);
+
+            if($customer){
+
+                $customer->first_name = $request->first_name;
+                $customer->last_name = $request->last_name;
+                $customer->email = $request->email;
+                $customer->phone = $request->phone;
+                $customer->address = $request->address;
+                $customer->save();
+        
+                return response()->json([
+                    'status' => 200,
+                    'message' => 'Updated successully',
+                ]);
+
+            }else{
+
+                return response()->json([
+                    'status' => 404,
+                    'message' => 'Customer not found!',
+                ]);
+
+            }
+        }
+    }
 }
