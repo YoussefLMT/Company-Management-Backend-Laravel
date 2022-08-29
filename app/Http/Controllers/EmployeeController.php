@@ -139,4 +139,29 @@ class EmployeeController extends Controller
             }
         }
     }
+
+
+
+    public function deleteEmployee($id)
+    {
+        $employee = Employee::find($id);
+
+        if($employee){
+
+            $employee->delete();
+    
+            return response()->json([
+                'status' => 200,
+                'message' => 'Deleted successfully',
+            ]);
+
+        }else{
+
+            return response()->json([
+                'status' => 404,
+                'message' => 'Employee not found!',
+            ]);
+
+        }
+    }
 }
