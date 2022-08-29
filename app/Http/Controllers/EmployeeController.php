@@ -86,4 +86,57 @@ class EmployeeController extends Controller
 
         }
     }
+
+
+
+    public function updateEmployee(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'first_name'=> 'required',
+            'last_name'=> 'required',
+            'email' => 'required|email',
+            'phone' => 'required',
+            'job' => 'required',
+            'salary' => 'required',
+            'department_id' => 'required',
+        ]);
+
+
+        if($validator->fails()){
+
+            return response()->json([
+                'status' => 422,
+                'validation_err' => $validator->messages(),
+            ]);
+
+        }else{
+
+            $employee = Employee::find($id);
+
+            if($employee){
+
+                $employee->first_name = $request->first_name;
+                $employee->last_name = $request->last_name;
+                $employee->email = $request->email;
+                $employee->phone = $request->phone;
+                $employee->job = $request->job;
+                $employee->salary = $request->salary;
+                $employee->department_id = $request->department_id;
+                $employee->save();
+        
+                return response()->json([
+                    'status' => 200,
+                    'message' => 'Updated successully',
+                ]);
+
+            }else{
+
+                return response()->json([
+                    'status' => 404,
+                    'message' => 'Employee not found!',
+                ]);
+
+            }
+        }
+    }
 }
