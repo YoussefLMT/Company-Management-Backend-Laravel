@@ -14,7 +14,7 @@ class EmployeeController extends Controller
     public function getEmployees()
     {
 
-        $employees = Employee::join('departments', 'employees.id', '=', 'departments.id')
+        $employees = Employee::join('departments', 'employees.department_id', '=', 'departments.id')
                ->get(['employees.*', 'departments.name']);
 
         return response()->json([
@@ -23,6 +23,8 @@ class EmployeeController extends Controller
         ]);
     }
     
+
+
     public function addEmployee(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -57,6 +59,31 @@ class EmployeeController extends Controller
                 'status' => 200,
                 'message' => "Employee added successfully",
             ]);
+        }
+    }
+
+
+
+    public function getEmployee($id)
+    {
+        $employee = Employee::join('departments', 'employees.department_id', '=', 'departments.id')
+        ->where('employees.id', '=', $id)
+               ->get(['employees.*', 'departments.name']);
+
+        if($employee){
+
+            return response()->json([
+                'status' => 200,
+                'employee' => $employee,
+            ]);
+
+        }else{
+
+            return response()->json([
+                'status' => 404,
+                'message' => 'Employee not found!',
+            ]);
+
         }
     }
 }
