@@ -4,11 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Employee;
+use App\Models\Department;
 use Illuminate\Support\Facades\Validator;
 
 
 class EmployeeController extends Controller
 {
+
+    public function getEmployees()
+    {
+
+        $employees = Employee::join('departments', 'employees.id', '=', 'departments.id')
+               ->get(['employees.*', 'departments.name']);
+
+        return response()->json([
+            'status' => 200,
+            'employees' => $employees
+        ]);
+    }
     
     public function addEmployee(Request $request)
     {
