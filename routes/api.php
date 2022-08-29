@@ -47,6 +47,7 @@ Route::put('update-customer/{id}', [CustomerController::class, 'updateCustomer']
 Route::delete('delete-customer/{id}', [CustomerController::class, 'deleteCustomer']);
 
 
+Route::get('employees', [EmployeeController::class, 'getEmployees']);
 Route::post('add-employee', [EmployeeController::class, 'addEmployee']);
 
 
