@@ -98,7 +98,7 @@ class EmployeeController extends Controller
             'phone' => 'required',
             'job' => 'required',
             'salary' => 'required',
-            'department_id' => 'required',
+            // 'department_id' => 'required',
         ]);
 
 
