@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,7 +53,6 @@ Route::post('add-employee', [EmployeeController::class, 'addEmployee']);
 Route::get('get-employee/{id}', [EmployeeController::class, 'getEmployee']);
 Route::put('update-employee/{id}', [EmployeeController::class, 'updateEmployee']);
 Route::delete('delete-employee/{id}', [EmployeeController::class, 'deleteEmployee']);
-
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
