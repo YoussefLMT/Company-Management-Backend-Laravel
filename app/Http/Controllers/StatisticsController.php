@@ -10,7 +10,7 @@ use App\Models\Department;
 class StatisticsController extends Controller
 {
     
-    public function getTotalVisitsCount(){
+    public function getTotalCount(){
 
         $employeesCount = Employee::all()->count();
         $customersCount = Customer::all()->count();

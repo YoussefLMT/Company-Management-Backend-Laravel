@@ -7,6 +7,7 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\StatisticsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,7 @@ use App\Http\Controllers\UserController;
 
 Route::post('login', [AuthController::class, 'login']);
 
+Route::get('statistics', [StatisticsController::class, 'getTotalCount']);
 
 
 Route::middleware(['auth:sanctum'])->group(function () {
